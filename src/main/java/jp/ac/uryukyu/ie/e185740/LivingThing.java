@@ -1,12 +1,25 @@
 package jp.ac.uryukyu.ie.e185740;
-
+/**
+ * キャラクターのクラス。
+ *  String name; //キャラクターの名前
+ *  int hitPoint; //キャラクターのHP
+ *  int attack; //キャラクターの攻撃力
+ *  boolean dead; //キャラクターの生死状態。true=死亡。
+ * Created by shinya on 2018/12/10.
+ */
 public class LivingThing {
     private String name;
     private int hitPoint;
     private int attack;
     private boolean dead;
+    /**
+     * コンストラクタ。名前、最大HP、攻撃力を指定する。
+     * @param name ヒーロー又は、敵の名前
+     * @param maximumHP ヒーロー又は、敵のHP
+     * @param attack ヒーロー又は、敵の攻撃力
+     */
 
-    LivingThing(String name, int maximumHP, int attack){
+    public LivingThing(String name, int maximumHP, int attack){
         this.name = name;
         this.hitPoint = maximumHP;
         this.attack = attack;
@@ -14,29 +27,35 @@ public class LivingThing {
 
     }
 
-    boolean isDead() {
+    public boolean isDead() {
         return  dead;
     }
 
-    void  setDead(boolean dead)
+    public void setDead(boolean dead)
     {
         this.dead = dead;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    int getHitPoint()
+    public int getHitPoint()
     {
         return hitPoint;
     }
-    void setHitPoint(int hitPoint)
+
+    public void setHitPoint(int hitPoint)
     {
         this.hitPoint = hitPoint;
     }
-
-    void attack(LivingThing opponent)
+    /**
+     * 自身が死亡していないかを確認して、
+     * ランダムにダメージを選出する。
+     * それを、wondedメソッドに渡す。
+     * @param opponent ダメージを受けるキャラクターのオブジェクト
+     */
+    public void attack(LivingThing opponent)
     {
         if (!isDead()) {
             int damage = (int) (Math.random() * attack);
@@ -44,7 +63,11 @@ public class LivingThing {
             opponent.wounded(damage);
         }
     }
-
+    /**
+     * 自身へ攻撃されたときのダメージ処理をするメソッド。
+     * 指定されたダメージを hitPoint から引き、死亡判定を行う。
+     * @param damage 受けたダメージ
+     */
     public void wounded( int damage)
     {
         hitPoint -= damage;

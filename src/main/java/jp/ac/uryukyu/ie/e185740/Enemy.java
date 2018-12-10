@@ -8,7 +8,7 @@ package jp.ac.uryukyu.ie.e185740;
  *  boolean dead; //敵の生死状態。true=死亡。
  * Created by tnal on 2016/11/13.
  */
-class Enemy extends LivingThing{
+public class Enemy extends LivingThing{
 
 
         /**
